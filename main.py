@@ -27,17 +27,45 @@
     
     Execute cd .. to go back to wordleAI directory if in wordle directory
    ---------------------------------------------------------------------------------------------------'''
+'''--------------------------------------------------------------------------------------------------
+                                    WordleAI Project Commands:
+   --------------------------------------------------------------------------------------------------
+                        Use the following commands to play the game:
+                    
+    To play Wordle as a human player:
+                    
+    python wordle.py
+                        
+    To play Wordle using an AI player:
+                    
+    python wordle.py -ai ai_player
+
+   ---------------------------------------------------------------------------------------------------'''
 
 '''--------------------------------------------------------------------------------------------------
                                     WordleAI Project Description:
    --------------------------------------------------------------------------------------------------
-    
+    This project is a Python-based AI player for the game Wordle which can be played at the following
+     link: https://www.nytimes.com/games/wordle.
+     
+     The game Wordle operates as followed: the goal is to guess a randomly selected 5-letter word 
+     with a maximum of 6 total guesses. After making a guess, the user will receive feedback to guide
+     future guesses;
+     
+     GREEN if its in the world and in the correct position
+     
+     YELLOW if its in the word, but in the wrong position
+     
+     WHITE/GRAY if its not in the word
+     
+     Each guess must be a valid word, so for example, guessing AEIOU will not work.
                                                                
    ---------------------------------------------------------------------------------------------------'''
 '''--------------------------------------------------------------------------------------------------
                                             Imports Section:
    --------------------------------------------------------------------------------------------------'''
 import pdb # import a python debugger
+
 
 
 
