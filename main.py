@@ -73,6 +73,14 @@ import pdb # import a python debugger
                                             Program Start:
    --------------------------------------------------------------------------------------------------'''
 
+ # Create a method called makeguess that takes in the allwords5.txt word list, the guesses,
+ # as well as the feedback of those guesses.
+def makeguess(wordlist, guesses=[], feedback=[]):
+    """Guess a word from the available wordlist, (optionally) using feedback
+     from previous guesses."""
+
+
+
 def main(name):
     # Use a breakpoint in the code line below to debug your script.
     print(f'\nYes! {name}')  # Press Ctrl+F8 to toggle the breakpoint.
