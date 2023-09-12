@@ -84,7 +84,7 @@ def sortOutBadGuesses(listofwords, feedback, lastGuess):
             #if there are 2's in feedback, im checking them against the words in the list 
             if len(twos):
                 for j in range(len(twos)):
-                    if word[twos[j]] != lastGuess[twos[j]]: #if the position of the letter does not match the word, im deleting word
+                    if word[twos[j]] != lastGuessString[twos[j]]: #if the position of the letter does not match the word, im deleting word
                         del listofwords[i]
                         #If im deleting the word, theres no need to check for 1's. So i made a continue onto the next word flag
                         continue_outer_loop = True
@@ -95,7 +95,7 @@ def sortOutBadGuesses(listofwords, feedback, lastGuess):
             #if there are 1's in feedback, im checking them against the words in the list 
             if len(ones):
                 for j in range(len(ones)):
-                    if lastGuess[ones[j]] not in word:
+                    if lastGuessString[ones[j]] not in word:
                         del listofwords[i]
                         break
     return listofwords
