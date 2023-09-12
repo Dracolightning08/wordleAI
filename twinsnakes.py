@@ -1,18 +1,6 @@
-# ai_loser.py 
-# The worst AI for playing Wordle because it always purposefully loses.
-#
-# The "strategy" of this default AI player is simply to pick the word 'LOSES'
-# *every* time. Since this word is a valid choice, but does not exist in the 
-# list of secret words, the AI player will always fail.
-#
-# This player exists primarily to test the AI capabilities of the main program,
-# specifically making sure the tracked statistics can handle a 0% win rate.
+
 
 import utils
-alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-listOfWords = []
-
-# PRIOTY = 'NSLCU'
 
 def makeguess(wordlist, guesses=[], feedback=[]):
     """Guess a word from the available wordlist, (optionally) using feedback 
@@ -37,11 +25,8 @@ def makeguess(wordlist, guesses=[], feedback=[]):
     word : str
         The word chosen by the AI for the next guess.
     """
-    # According to the Oxford English Dic
-    # the top letters in the english lang is
-    # e, a, r, i, o, t
-    # ariot is in the wordlist and contains those
-    # top 6 letters, so thats gonna be our first guess
+
+    # global saves the vars in whatever state we leave them in, not matter how many times we call a function
     global alphabet
     global listOfWords
 
@@ -57,7 +42,7 @@ def makeguess(wordlist, guesses=[], feedback=[]):
     
     else:
         # this sorts out all the bad guess base off feed back received 
-        wordlist = sortOutBadGuesses(listOfWords, feedback, guesses)
+        listOfWords = sortOutBadGuesses(listOfWords, feedback, guesses)
         # This is how far i got, still needs word
 
 
@@ -66,7 +51,6 @@ def makeguess(wordlist, guesses=[], feedback=[]):
     return 'Loser' 
     
     
-
 def sortOutBadGuesses(listofwords, feedback, lastGuess):
 
     feedback = feedback[len(feedback) - 1] #getting the lastest feedback in the list
@@ -93,17 +77,22 @@ def sortOutBadGuesses(listofwords, feedback, lastGuess):
     
     # else im going through all the words in the list and matching the letters from feedback
     else:
-        for i in range(len(listOfWords)):
+        for i in range(len(listofwords)):
             continue_outer_loop = False
-            word = listOfWords[i]
+            word = listofwords[i]
+
+            #if there are 2's in feedback, im checking them against the words in the list 
             if len(twos):
                 for j in range(len(twos)):
-                    if word[twos[j]] != lastGuess[twos[j]]:
+                    if word[twos[j]] != lastGuess[twos[j]]: #if the position of the letter does not match the word, im deleting word
                         del listofwords[i]
+                        #If im deleting the word, theres no need to check for 1's. So i made a continue onto the next word flag
                         continue_outer_loop = True
                         break
                 if continue_outer_loop:
                     continue
+
+            #if there are 1's in feedback, im checking them against the words in the list 
             if len(ones):
                 for j in range(len(ones)):
                     if lastGuess[ones[j]] not in word:
