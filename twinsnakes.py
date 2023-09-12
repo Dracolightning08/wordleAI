@@ -21,15 +21,30 @@ def makeguess(wordlist, guesses=[], feedback=[]):
     word : str
         The word chosen by the AI for the next guess.
     """
+<<<<<<< Updated upstream
     # global saves the vars in whatever state we leave them in, not matter how many times we call a function
+=======
+
+    # global saves the vars in whatever state we leave them in, no matter how many times we call a function
+>>>>>>> Stashed changes
     global alphabet
     global listOfWords
     global prioty
     guess = 'SOARE'
     if not len(guesses): #if no guesses have been made, guess 'SOARE"
+
+        # Create a variable of which contains a string of the alphabet
         alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+<<<<<<< Updated upstream
         prioty = ['I', 'T', 'N', 'L', 'C', 'U']
         listOfWords = wordlist
+=======
+
+        # Create a list called listOfWords and have it contain a file of words
+        listOfWords = wordlist
+
+        guess = 'SOARE'
+>>>>>>> Stashed changes
         for i in range(len(guess)):
             alphabet = alphabet.replace(guess[i], '')
         guess = guess.lower()
