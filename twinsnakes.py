@@ -1,4 +1,10 @@
+'''--------------------------------------------------------------------------------------------------
+                                            Imports Section:
+   --------------------------------------------------------------------------------------------------'''
 import utils
+'''--------------------------------------------------------------------------------------------------
+                                            Program Start:
+   --------------------------------------------------------------------------------------------------'''
 def makeguess(wordlist, guesses=[], feedback=[]):
     """Guess a word from the available wordlist, (optionally) using feedback
     from previous guesses.
@@ -79,7 +85,7 @@ def sortOutBadGuesses(listofwords, feedback, lastGuess):
         #if there are 1's in feedback, im checking them against the words in the list
         if len(ones):
             for j in range(len(ones)):
-                #if the letter is not in the word from the list of words or if the letter is right but in the wrong place.. delete the word
+                #if the letter is not in the word from the list of words or if the letter is right but in the wrong place. delete the word
                 if lastGuessString[ones[j]] not in word or lastGuessString[ones[j]] == word[ones[j]]:
                     del listofwords[i]
                     break
@@ -87,3 +93,7 @@ def sortOutBadGuesses(listofwords, feedback, lastGuess):
 if __name__ == "__main__":
     wordlist = utils.readwords('wordle/allwords5.txt')
     print(f"AI: \"My next choice would be {makeguess(wordlist)}\"")
+
+'''--------------------------------------------------------------------------------------------------
+                                            Program End:
+   --------------------------------------------------------------------------------------------------'''
