@@ -21,21 +21,15 @@ def makeguess(wordlist, guesses=[], feedback=[]):
     word : str
         The word chosen by the AI for the next guess.
     """
-
-    # global saves the vars in whatever state we leave them in, no matter how many times we call a function
+    # global saves the vars in whatever state we leave them in, not matter how many times we call a function
     global alphabet
     global listOfWords
     global prioty
     guess = 'SOARE'
     if not len(guesses): #if no guesses have been made, guess 'SOARE"
-
-        # Create a variable of which contains a string of the alphabet
         alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-
-        # Create a list called listOfWords and have it contain a file of words
+        prioty = ['I', 'T', 'N', 'L', 'C', 'U']
         listOfWords = wordlist
-
-        guess = 'SOARE'
         for i in range(len(guess)):
             alphabet = alphabet.replace(guess[i], '')
         guess = guess.lower()
@@ -43,11 +37,11 @@ def makeguess(wordlist, guesses=[], feedback=[]):
     else:
         # this sorts out all the bad guess base off feed back received
         listOfWords = sortOutBadGuesses(listOfWords, feedback, guesses)
-        
+        return listOfWords[0]
 
-    return 'Loser'
+    
 
-def sortOutBadGuesses(listofwords, feedback, lastGuess):
+def sortOutBadGuesses(listofwords, feedback, lastGuess): 
     feedback = feedback[len(feedback) - 1] #getting the lastest feedback in the list
     lastGuess = lastGuess[len(lastGuess) - 1] #getting the lastest guess in the list
     lastGuessString = ''.join(lastGuess)
