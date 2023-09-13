@@ -104,10 +104,14 @@ def sortOutBadGuesses(listofwords, feedback, lastGuess):
     twos = [i for i ,e in enumerate(feedback) if e == 2]
     ones = [i for i ,e in enumerate(feedback) if e == 1]
     zeros = [i for i ,e in enumerate(feedback) if e == 0]
-    
+
+    # iterate through the list of words and remove words based on letter feedback depending on 0 (not in word),
+    # 1 (in the word not in the right place), and 2 (in the word and in the right place)
     for i in range(len(listofwords)):
         continue_outer_loop = False
         word = listofwords[i]
+
+        # If indexes of zeros found, words with those letters will be removed
         if len(zeros):
             for j in range(len(zeros)):
                 if lastGuessString[zeros[j]] in word:
@@ -116,6 +120,7 @@ def sortOutBadGuesses(listofwords, feedback, lastGuess):
                     break
             if continue_outer_loop: #continues onto the next word in the list
                 continue
+
         #if there are 2's in feedback, im checking them against the words in the list    
         if len(twos):
             for j in range(len(twos)):
@@ -126,6 +131,7 @@ def sortOutBadGuesses(listofwords, feedback, lastGuess):
                     break
             if continue_outer_loop:
                 continue
+
         #if there are 1's in feedback, im checking them against the words in the list
         if len(ones):
             for j in range(len(ones)):
