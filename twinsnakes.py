@@ -150,7 +150,11 @@ def makeguess(wordlist, guesses=[], feedback=[]):
         return listOfWords[0]
         
         # iterates over the list of words and returns a word as soon as one of the words contains the priority letter
-        #return any(priority in word for word in listOfWords)
+        #
+        # for word in listOfWords:
+        #     for letter in priority:
+        #         if letter in word:
+        #             return word
 
 
 # Create a method that removes words not related to the potential daily word and removes all the bad guesses that could
