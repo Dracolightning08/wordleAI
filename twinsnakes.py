@@ -5,6 +5,10 @@ import utils
 '''--------------------------------------------------------------------------------------------------
                                             Program Start:
    --------------------------------------------------------------------------------------------------'''
+
+# -------------------------------------------------------------------------------------------------------
+#                                   Make Guess Method
+# -------------------------------------------------------------------------------------------------------
 def makeguess(wordlist, guesses=[], feedback=[]):
     """Guess a word from the available wordlist, (optionally) using feedback
     from previous guesses.
@@ -32,12 +36,14 @@ def makeguess(wordlist, guesses=[], feedback=[]):
                                                 Global Variables:
        --------------------------------------------------------------------------------------------------'''
     # global saves the vars in whatever state we leave them in, not matter how many times we call a function
-    global alphabet
-    global listOfWords
-    global priority
+
+    global alphabet # used for storing letters of the alphabet and to be removed when used in a guess
+    global listOfWords # used as a listing variable to use the list of words within the file.
+    global priority # used for a list of common letters that should be prioritized to help with smart guessing
     '''--------------------------------------------------------------------------------------------------
                                                 
        --------------------------------------------------------------------------------------------------'''
+
     # Create a variable called guess to be used for guesses and have it saved as 'SOARE' for the first word to guess
     guess = 'SOARE'
 
@@ -77,8 +83,14 @@ def makeguess(wordlist, guesses=[], feedback=[]):
         return listOfWords[0]
 
     
+# -------------------------------------------------------------------------------------------------------
+#                                   Sort Out Bad Guesses Method
+# -------------------------------------------------------------------------------------------------------
 
-def sortOutBadGuesses(listofwords, feedback, lastGuess): 
+# Create a method that removes words not related to the potential daily word and removes all the bad guesses that could
+# be made. This method uses the feedback from the previous guesses and works to eliminate words in the wordlist to
+# enhance chance of success of guessing the right word
+def sortOutBadGuesses(listofwords, feedback, lastGuess):
     feedback = feedback[len(feedback) - 1] #getting the lastest feedback in the list
     lastGuess = lastGuess[len(lastGuess) - 1] #getting the lastest guess in the list
     lastGuessString = ''.join(lastGuess)
@@ -123,6 +135,8 @@ def sortOutBadGuesses(listofwords, feedback, lastGuess):
                     del listofwords[i]
                     break
     return listofwords
+
+# Add the project as a import itself
 if __name__ == "__main__":
     wordlist = utils.readwords('wordle/allwords5.txt')
     print(f"AI: \"My next choice would be {makeguess(wordlist)}\"")
