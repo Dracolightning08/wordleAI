@@ -77,11 +77,11 @@ def makeguess(wordlist, guesses=[], feedback=[]):
     else:
         # this sorts out all the bad guess base off feed back received
         listOfWords = sortOutBadGuesses(listOfWords, feedback, guesses)
-        print(listOfWords)
+        #print(listOfWords)
         for i in range(len(listOfWords)):
             word = listOfWords[i]
             if has_unique_letters(word):
-                print(word)
+                #print(word)
                 return word
         return listOfWords[0]
         
