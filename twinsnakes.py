@@ -103,7 +103,7 @@ def sortOutBadGuesses(listofwords, feedback, lastGuess):
 
     twos = [i for i ,e in enumerate(feedback) if e == 2]
     ones = [i for i ,e in enumerate(feedback) if e == 1]
-    zeros = [i for i ,e in enumerate(feedback) if e == 1]
+    zeros = [i for i ,e in enumerate(feedback) if e == 0]
     
     for i in range(len(listofwords)):
         continue_outer_loop = False
@@ -111,11 +111,10 @@ def sortOutBadGuesses(listofwords, feedback, lastGuess):
         if len(zeros):
             for j in range(len(zeros)):
                 if lastGuessString[zeros[j]] in word:
-                    del listofwords[i]
-                #If im deleting the word, theres no need to check for 1's. So i made a continue onto the next word flag
+                    del listofwords[i] #If im deleting the word, theres no need to check for 2's. So i made a continue onto the next word flag
                     continue_outer_loop = True
                     break
-            if continue_outer_loop:
+            if continue_outer_loop: #continues onto the next word in the list
                 continue
         #if there are 2's in feedback, im checking them against the words in the list    
         if len(twos):
