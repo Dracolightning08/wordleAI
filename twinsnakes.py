@@ -76,11 +76,14 @@ def makeguess(wordlist, guesses=[], feedback=[]):
         # return the guess
         return guess
 
-
+    #TODO work on else conditional statement where : if priority in listOfWords return any priority word
     else:
         # this sorts out all the bad guess base off feed back received
         listOfWords = sortOutBadGuesses(listOfWords, feedback, guesses)
-        return listOfWords[0]
+        #return listOfWords[0]
+
+        # iterates over the list of words and returns a word as soon as one of the words contains the priority letter
+        return any(priority in word for word in listOfWords)
 
     
 # -------------------------------------------------------------------------------------------------------
