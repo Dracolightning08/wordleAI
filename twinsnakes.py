@@ -145,7 +145,7 @@ def makeguess(wordlist, guesses=[], feedback=[]):
         twos = [i for i ,e in enumerate(feedback[len(feedback) - 1]) if e == 2]
         for i in range(len(listOfWords)):
             word = listOfWords[i]
-            if has_unique_letters(word):
+            if are_indices_unique(word, twos):
                 print(word)
                 return word
         return listOfWords[0]
@@ -236,6 +236,34 @@ def has_unique_letters(word):
 
     # If we've gone through the entire word without finding a duplicate, it has unique letters
     return True
+
+def are_indices_unique(word, indices):
+    """
+    Check if a list of indices are unique within the word.
+
+    Args:
+    - word (str): The input word.
+    - indices (list of int): List of indices to check for uniqueness.
+
+    Returns:
+    - bool: True if all indices are unique, False otherwise.
+    """
+    if not indices:
+        return False  # Empty list of indices
+
+    for index in indices:
+        if index < 0 or index >= len(word):
+            return False  # Index out of range
+
+    char_counts = {}
+    for index in indices:
+        char = word[index]
+        if char in char_counts:
+            char_counts[char] += 1
+        else:
+            char_counts[char] = 1
+
+    return all(count == 1 for count in char_counts.values())
 
 # Add the project as a import itself
 if __name__ == "__main__":
