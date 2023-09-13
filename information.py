@@ -2,10 +2,10 @@
                         CSC 3510 Introduction to Artificial Intelligence
                                     Florida Southern College
                             HW1: Getting Started with AI in Python
-    
+
                                         Hunter Odom
                                               &
-                                          Tre Cobb                           
+                                          Tre Cobb
                                                                                                      '''
 '''--------------------------------------------------------------------------------------------------
                                     IMPORTANT PROJECT INFORMATION:
@@ -13,10 +13,10 @@
     The following repository wordle, is a sub-repository of wordleAI. This sub-repository has been 
     cloned inside this repo and its credit goes to github user meicholtz at the following link:
     https://github.com/meicholtz/wordle. 
-    
+
     In order to utilize the commands to play the game one must navigate using ls and cd to the directory
     wordle to be able to run them or else it will result in error. 
-    
+
     For example: if you are on the main repository, execute ls to see the directories available, and then
     execute cd wordle to enter the right repository to run the commands for the game.
 
@@ -24,20 +24,20 @@
     the wordleAI repository in order to push the changes. If you are in wordl directory then try to run
     those commands it actually tries to send the changes to the meicholz world repository which access
     will be immediately denied.
-    
+
     Execute cd .. to go back to wordleAI directory if in wordle directory
    ---------------------------------------------------------------------------------------------------'''
 '''--------------------------------------------------------------------------------------------------
                                     WordleAI Project Commands:
    --------------------------------------------------------------------------------------------------
                         Use the following commands to play the game:
-                    
+
     To play Wordle as a human player:
-                    
+
     python wordle.py
-                        
+
     To play Wordle using an AI player:
-                    
+
     python wordle.py -ai ai_player
 
    ---------------------------------------------------------------------------------------------------'''
@@ -47,17 +47,17 @@
    --------------------------------------------------------------------------------------------------
     This project is a Python-based AI player for the game Wordle which can be played at the following
      link: https://www.nytimes.com/games/wordle.
-     
+
      The game Wordle operates as followed: the goal is to guess a randomly selected 5-letter word 
      with a maximum of 6 total guesses. After making a guess, the user will receive feedback to guide
      future guesses;
-     
+
      GREEN if its in the world and in the correct position
-     
+
      YELLOW if its in the word, but in the wrong position
-     
+
      WHITE/GRAY if its not in the word
-     
+
      Each guess must be a valid word, so for example, guessing AEIOU will not work.
-                                                               
+
    ---------------------------------------------------------------------------------------------------'''
