@@ -27,19 +27,50 @@ def makeguess(wordlist, guesses=[], feedback=[]):
     word : str
         The word chosen by the AI for the next guess.
     """
+
+    '''--------------------------------------------------------------------------------------------------
+                                                Global Variables:
+       --------------------------------------------------------------------------------------------------'''
     # global saves the vars in whatever state we leave them in, not matter how many times we call a function
     global alphabet
     global listOfWords
-    global prioty
+    global priority
+    '''--------------------------------------------------------------------------------------------------
+                                                
+       --------------------------------------------------------------------------------------------------'''
+    # Create a variable called guess to be used for guesses and have it saved as 'SOARE' for the first word to guess
     guess = 'SOARE'
+
     if not len(guesses): #if no guesses have been made, guess 'SOARE"
+
+        # Create a variable called alphabet that contains a string of the letters of the alphabet.
+        # alphabet will be used to remove letters from the string as guesses are being made
         alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-        prioty = ['I', 'T', 'N', 'L', 'C', 'U']
+
+        # the following is a list called priority and have it contain letters that appear often in words to be used
+        # for potential likelier guesses
+        priority = ['I', 'T', 'N', 'L', 'C', 'U']
+
+        # Create a variable list called listOfWords that contains the wordlist with the 12k+ words for wordle
         listOfWords = wordlist
+
+
+        # Create a loop that iterates through the guess and replaces the corresponding letter at its place in the word
+        # within the alphabet string with empty space, effectively removing it.
+
+        # iterate through the guess:
         for i in range(len(guess)):
+
+            # replace the letters used in the guess with empty space to remove it from the alphabet string
             alphabet = alphabet.replace(guess[i], '')
+
+        # Turn guess completely into lowercase letters
         guess = guess.lower()
+
+        # return the guess
         return guess
+
+
     else:
         # this sorts out all the bad guess base off feed back received
         listOfWords = sortOutBadGuesses(listOfWords, feedback, guesses)
@@ -56,6 +87,8 @@ def sortOutBadGuesses(listofwords, feedback, lastGuess):
     # 1 is at index 2
     # [(2, 'S'), (0, 'o'), (1, 'a'), (0, 'r'), (2, 'e')]
     # [0, 4] [2]
+
+
     twos = [i for i ,e in enumerate(feedback) if e == 2]
     ones = [i for i ,e in enumerate(feedback) if e == 1]
     zeros = [i for i ,e in enumerate(feedback) if e == 1]
