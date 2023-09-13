@@ -70,9 +70,6 @@ def makeguess(wordlist, guesses=[], feedback=[]):
             # replace the letters used in the guess with empty space to remove it from the alphabet string
             alphabet = alphabet.replace(guess[i], '')
 
-        # Turn guess completely into lowercase letters
-        guess = guess.lower()
-
         # return the guess
         return guess
 
@@ -80,20 +77,21 @@ def makeguess(wordlist, guesses=[], feedback=[]):
     else:
         # this sorts out all the bad guess base off feed back received
         listOfWords = sortOutBadGuesses(listOfWords, feedback, guesses)
-        #return listOfWords[0]
-
-        # iterates over the list of words and returns a word as soon as one of the words contains the priority letter
-        return any(priority in word for word in listOfWords)
-
-    
-# -------------------------------------------------------------------------------------------------------
-#                                   Sort Out Bad Guesses Method
-# -------------------------------------------------------------------------------------------------------
+        print(listOfWords)
+        for i in range(len(listOfWords)):
+            word = listOfWords[i]
+            if has_unique_letters(word):
+                print(word)
+                return word
+        return listOfWords[0]
+        
+        # # iterates over the list of words and returns a word as soon as one of the words contains the priority letter
+        # return any(priority in word for word in listOfWords)
 
 # Create a method that removes words not related to the potential daily word and removes all the bad guesses that could
 # be made. This method uses the feedback from the previous guesses and works to eliminate words in the wordlist to
 # enhance chance of success of guessing the right word
-def sortOutBadGuesses(listofwords, feedback, lastGuess):
+def sortOutBadGuesses(listofwords, feedback, lastGuess): 
     feedback = feedback[len(feedback) - 1] #getting the lastest feedback in the list
     lastGuess = lastGuess[len(lastGuess) - 1] #getting the lastest guess in the list
     lastGuessString = ''.join(lastGuess)
@@ -107,28 +105,36 @@ def sortOutBadGuesses(listofwords, feedback, lastGuess):
     twos = [i for i ,e in enumerate(feedback) if e == 2]
     ones = [i for i ,e in enumerate(feedback) if e == 1]
     zeros = [i for i ,e in enumerate(feedback) if e == 0]
+    
+    copy_of_list = listofwords.copy()
 
-    # iterate through the list of words and remove words based on letter feedback depending on 0 (not in word),
-    # 1 (in the word not in the right place), and 2 (in the word and in the right place)
-    for i in range(len(listofwords)):
+    for i in range(len(copy_of_list)):
         continue_outer_loop = False
-        word = listofwords[i]
-
-        # If indexes of zeros found, words with those letters will be removed
-        if len(zeros):
+        word = copy_of_list[i]
+        if len(zeros) == 5:
             for j in range(len(zeros)):
                 if lastGuessString[zeros[j]] in word:
-                    del listofwords[i] #If im deleting the word, theres no need to check for 2's. So i made a continue onto the next word flag
+                    #breakpoint()
+                    listofwords.remove(word) #If im deleting the word, theres no need to check for 2's. So i made a continue onto the next word flag
                     continue_outer_loop = True
                     break
             if continue_outer_loop: #continues onto the next word in the list
                 continue
-
+        if len(zeros):
+            for j in range(len(zeros)):
+                if lastGuessString[zeros[j]] == word[zeros[j]]:
+                    #breakpoint()
+                    listofwords.remove(word) #If im deleting the word, theres no need to check for 2's. So i made a continue onto the next word flag
+                    continue_outer_loop = True
+                    break
+            if continue_outer_loop: #continues onto the next word in the list
+                continue
         #if there are 2's in feedback, im checking them against the words in the list    
         if len(twos):
             for j in range(len(twos)):
                 if word[twos[j]] != lastGuessString[twos[j]]: #if the position of the letter does not match the word, im deleting word
-                    del listofwords[i]
+                    #breakpoint()
+                    listofwords.remove(word)
                     #If im deleting the word, theres no need to check for 1's. So i made a continue onto the next word flag
                     continue_outer_loop = True
                     break
@@ -140,9 +146,25 @@ def sortOutBadGuesses(listofwords, feedback, lastGuess):
             for j in range(len(ones)):
                 #if the letter is not in the word from the list of words or if the letter is right but in the wrong place. delete the word
                 if lastGuessString[ones[j]] not in word or lastGuessString[ones[j]] == word[ones[j]]:
-                    del listofwords[i]
+                    #breakpoint()
+                    listofwords.remove(word)
                     break
     return listofwords
+
+def has_unique_letters(word):
+    # Create a set to store encountered letters
+    letter_set = set()
+
+    # Iterate through each letter in the word
+    for letter in word:
+        # If the letter is already in the set, it's not unique
+        if letter in letter_set:
+            return False
+        # Otherwise, add it to the set
+        letter_set.add(letter)
+
+    # If we've gone through the entire word without finding a duplicate, it has unique letters
+    return True
 
 # Add the project as a import itself
 if __name__ == "__main__":
