@@ -74,14 +74,7 @@ import argparse
 # -------------------------------------------------------------------------------------------------------
 #                                   Make Guess Method
 # -------------------------------------------------------------------------------------------------------
-def getUniqueCharacters(word):
-    currentChars = []
-    count = 0
-    for char in word:
-        if char not in currentChars:
-            currentChars.append(char)
-            count += 1
-    return count
+
 
 
 def makeguess(wordlist, guesses=[], feedback=[]):
@@ -244,50 +237,15 @@ def sortOutBadGuesses(listofwords, feedback, lastGuess):
     # print(listofwords)
     return listofwords
 
+def getUniqueCharacters(word):
+    currentChars = []
+    count = 0
+    for char in word:
+        if char not in currentChars:
+            currentChars.append(char)
+            count += 1
+    return count
 
-def has_unique_letters(word):
-    # Create a set to store encountered letters
-    letter_set = set()
-
-    # Iterate through each letter in the word
-    for letter in word:
-        # If the letter is already in the set, it's not unique
-        if letter in letter_set:
-            return False
-        # Otherwise, add it to the set
-        letter_set.add(letter)
-
-    # If we've gone through the entire word without finding a duplicate, it has unique letters
-    return True
-
-
-def are_indices_unique(word, indices):
-    """
-    Check if a list of indices are unique within the word.
-
-    Args:
-    - word (str): The input word.
-    - indices (list of int): List of indices to check for uniqueness.
-
-    Returns:
-    - bool: True if all indices are unique, False otherwise.
-    """
-    if not indices:
-        return False  # Empty list of indices
-
-    for index in indices:
-        if index < 0 or index >= len(word):
-            return False  # Index out of range
-
-    char_counts = {}
-    for index in indices:
-        char = word[index]
-        if char in char_counts:
-            char_counts[char] += 1
-        else:
-            char_counts[char] = 1
-
-    return all(count == 1 for count in char_counts.values())
 
 
 if __name__ == "__main__":
